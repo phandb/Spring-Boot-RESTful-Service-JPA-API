@@ -8,4 +8,10 @@ public interface PatientDAO {
 
 	//
 	public List<Patient> getAllPatient();
+	
+	public Patient getPatientById(int patientId);
+	
+	public void savePatient(Patient thePatient);
+	
+	public void deletePatientById(int patientId);
 }
