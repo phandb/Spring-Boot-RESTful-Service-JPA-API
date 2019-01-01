@@ -3,6 +3,8 @@ package com.javaprojects.springboot.patientapp.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,12 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.javaprojects.springboot.patientapp.entity.Patient;
 import com.javaprojects.springboot.patientapp.service.PatientService;
 
-@RestController
+@Controller
 @RequestMapping("/spring-boot-pms")
 public class ApplicationRestController {
 	
@@ -30,6 +33,7 @@ public class ApplicationRestController {
 	
 	//expose "/patients" and return list of patients
 	@GetMapping("/patients")
+	@ResponseBody
 	public List<Patient> getAllPatients(){
 		
 		return patientService.getAllPatients();
@@ -88,7 +92,16 @@ public class ApplicationRestController {
 		patientService.deletePatientById(patientId);
 		return "Delete patient id - " + patientId;
 	}
-	
+/*-----------------Thymeleaf--------------------------------------*/
+	//Show all patients
+	@RequestMapping("/list-all-patients")
+	public String listAllPatients(Model model) {
+		
+		List<Patient> patientList = patientService.getAllPatients();
+		model.addAttribute("allPatients", patientList );
+		return "viewAllPatients";
+		
+	}
 	
 	
 }

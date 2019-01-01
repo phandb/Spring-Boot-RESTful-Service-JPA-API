@@ -19,19 +19,21 @@
 	</properties>
 
 	<dependencies>
+		
+	    
 		<!-- Hibernate ORM Support-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		
-		<!-- Spring Security Support
+		<!-- Spring Security Support-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		
-		-->
+		
 		<!-- Spring MVC and REST Support-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -65,6 +67,11 @@
 		</dependency>
 		
 		 -->
+		 <!-- Thymeleaf -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
