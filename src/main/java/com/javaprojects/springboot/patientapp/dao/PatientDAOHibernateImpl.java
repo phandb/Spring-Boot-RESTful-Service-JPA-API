@@ -24,7 +24,10 @@ public class PatientDAOHibernateImpl implements PatientDAO {
 		
 		entityManager = theEntityManager;
 	}
+	
+	
 	@Override
+	@Transactional
 	public List<Patient> getAllPatient() {
 
 
@@ -38,11 +41,11 @@ public class PatientDAOHibernateImpl implements PatientDAO {
 		List<Patient> patients = theQuery.getResultList();
 		
 		//return the results
-		
 		return patients;
 	}
 	
 	@Override
+	@Transactional
 	public Patient getPatientById(int patientId) {
 		// Get current hibernate session
 		Session currentSession = entityManager.unwrap(Session.class);
@@ -55,6 +58,7 @@ public class PatientDAOHibernateImpl implements PatientDAO {
 	}
 	
 	@Override
+	@Transactional
 	public void savePatient(Patient thePatient) {
 		// get the current session
 		Session currentSession = entityManager.unwrap(Session.class);
@@ -66,6 +70,7 @@ public class PatientDAOHibernateImpl implements PatientDAO {
 	}
 	
 	@Override
+	@Transactional
 	public void deletePatientById(int theId) {
 		// get the current session
 		Session currentSession = entityManager.unwrap(Session.class);

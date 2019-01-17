@@ -3,6 +3,7 @@ package com.javaprojects.springboot.patientapp.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,7 @@ public class PatientServiceImpl implements PatientService {
 	
 	private PatientDAO patientDAO;
 	
+	//Setup Contructor Injection
 	@Autowired
 	public PatientServiceImpl(PatientDAO thePatientDAO) {
 		

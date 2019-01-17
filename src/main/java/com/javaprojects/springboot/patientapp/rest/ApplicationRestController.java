@@ -19,7 +19,7 @@ import com.javaprojects.springboot.patientapp.entity.Patient;
 import com.javaprojects.springboot.patientapp.service.PatientService;
 
 @Controller
-@RequestMapping("/spring-boot-pms")
+@RequestMapping("/api")
 public class ApplicationRestController {
 	
 	private PatientService patientService;
@@ -40,6 +40,7 @@ public class ApplicationRestController {
 	}
 	
 	//Return particular patient using id
+	//add mapping for GET/patients/{patientId} 
 	@GetMapping("patients/{patientId}")
 	public Patient getPatientById(@PathVariable int patientId) {
 		
@@ -93,13 +94,20 @@ public class ApplicationRestController {
 		return "Delete patient id - " + patientId;
 	}
 /*-----------------Thymeleaf--------------------------------------*/
+	//Admin index page
+	@RequestMapping("/admin/index")
+	public String home() {
+		return "admin/index";
+	}
+	
+	
 	//Show all patients
 	@RequestMapping("/list-all-patients")
 	public String listAllPatients(Model model) {
 		
 		List<Patient> patientList = patientService.getAllPatients();
 		model.addAttribute("allPatients", patientList );
-		return "viewAllPatients";
+		return "admin/index";
 		
 	}
 	
