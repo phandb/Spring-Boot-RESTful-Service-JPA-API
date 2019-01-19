@@ -3,7 +3,7 @@ package com.javaprojects.springboot.patientapp.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,38 +17,38 @@ public class PatientServiceImpl implements PatientService {
 	
 	//Setup Contructor Injection
 	@Autowired
-	public PatientServiceImpl(PatientDAO thePatientDAO) {
+	public PatientServiceImpl(@Qualifier("patientDAOJpaImpl") PatientDAO thePatientDAO) {
 		
 		patientDAO = thePatientDAO;
 	}
 
 	@Override
 	@Transactional
-	public List<Patient> getAllPatients() {
+	public List<Patient> findAll() {
 		
-		return patientDAO.getAllPatient();
+		return patientDAO.findAll();
 	}
 
 	@Override
 	@Transactional
-	public Patient getPatientById(int theId) {
+	public Patient findById(int theId) {
 		
-		return patientDAO.getPatientById(theId);
+		return patientDAO.findById(theId);
 	}
 
 	@Override
 	@Transactional
-	public void savePatient(Patient thePatient) {
+	public void save(Patient thePatient) {
 
-		patientDAO.savePatient(thePatient);
+		patientDAO.save(thePatient);
 
 	}
 
 	@Override
 	@Transactional
-	public void deletePatientById(int theId) {
+	public void deleteById(int theId) {
 
-		patientDAO.deletePatientById(theId);
+		patientDAO.deleteById(theId);
 
 	}
 

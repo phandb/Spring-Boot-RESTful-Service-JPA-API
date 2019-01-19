@@ -36,7 +36,7 @@ public class ApplicationRestController {
 	@ResponseBody
 	public List<Patient> getAllPatients(){
 		
-		return patientService.getAllPatients();
+		return patientService.findAll();
 	}
 	
 	//Return particular patient using id
@@ -44,7 +44,7 @@ public class ApplicationRestController {
 	@GetMapping("patients/{patientId}")
 	public Patient getPatientById(@PathVariable int patientId) {
 		
-		Patient thePatient = patientService.getPatientById(patientId);
+		Patient thePatient = patientService.findById(patientId);
 		
 		if (thePatient == null) {
 			throw new RuntimeException("Patinet id not found: " + patientId);
@@ -64,7 +64,7 @@ public class ApplicationRestController {
 		
 		thePatient.setId(0);
 		
-		patientService.savePatient(thePatient);
+		patientService.save(thePatient);
 		
 		return thePatient;
 	}
@@ -73,7 +73,7 @@ public class ApplicationRestController {
 	@PutMapping("/patients")
 	public Patient updatePatient(@RequestBody Patient thePatient) {
 		
-		patientService.savePatient(thePatient);
+		patientService.save(thePatient);
 		
 		return thePatient;
 	}
@@ -82,7 +82,7 @@ public class ApplicationRestController {
 	@DeleteMapping("patient/{patientId}")
 	public String deletePatient(@PathVariable int patientId) {
 		
-		Patient tempPatient =  patientService.getPatientById(patientId);
+		Patient tempPatient =  patientService.findById(patientId);
 		
 		//throw exception if null
 		
@@ -90,10 +90,10 @@ public class ApplicationRestController {
 			throw new RuntimeException("Patient id not found: " + patientId);
 		}
 		
-		patientService.deletePatientById(patientId);
+		patientService.deleteById(patientId);
 		return "Delete patient id - " + patientId;
 	}
-/*-----------------Thymeleaf--------------------------------------*/
+/*-----------------Thymeleaf---------------------------------
 	//Admin index page
 	@RequestMapping("/admin/index")
 	public String home() {
@@ -111,5 +111,7 @@ public class ApplicationRestController {
 		
 	}
 	
+	
+	-----*/
 	
 }

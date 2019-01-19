@@ -6,13 +6,13 @@ import com.javaprojects.springboot.patientapp.entity.Patient;
 
 public interface PatientService {
 	
-	public List<Patient> getAllPatients();
+	public List<Patient> findAll();
 	
-	public Patient getPatientById(int theId);
+	public Patient findById(int theId);
 	
-	public void savePatient(Patient thePatient);
+	public void save(Patient thePatient);
 	
-	public void deletePatientById(int theId);
+	public void deleteById(int theId);
 	
 
 }
